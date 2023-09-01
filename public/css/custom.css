@@ -1,0 +1,49 @@
+.auth .brand-logo img {
+    width: 100% !important;
+}
+.form-control, .asColorPicker-input, .dataTables_wrapper select, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint {
+    border: 1px solid #dee2e6;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    height: auto;
+}
+.divider_text h4::before {
+    display: inline-block;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-color: #ebebeb;
+    left: 100%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 1;
+}
+.divider_text h4 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: #010101;
+    display: inline-block;
+    position: relative;
+    padding: 0 25px;
+    z-index: 1;
+}
+.divider_text h4::after {
+    display: inline-block;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-color: #ebebeb;
+    right: 100%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 1;
+}
