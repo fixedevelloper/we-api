@@ -20,7 +20,7 @@ class WacePayService
      */
     public function __construct()
     {
-        $this->config=Helpers::getService("wacepay");
+        //$this->config=Helpers::getService("wacepay");
         $this->base_url=$this->config->url;
     }
 
