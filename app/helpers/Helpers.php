@@ -4,7 +4,10 @@
 namespace App\helpers;
 
 
+use App\Models\AccountKey;
 use App\Models\BussinesService;
+use App\Models\Currency;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class Helpers
@@ -12,6 +15,15 @@ class Helpers
     public static function getService($key){
         $buss=BussinesService::query()->firstWhere(["code_name"=>$key]);
         return $buss;
+    }
+    public static function verifyBalance($merchant_id,$amount,$currency_id){
+        $merchant=AccountKey::query()->find($merchant_id);
+        $currency=Currency::query()->find($currency_id);
+        $amount_usd=$amount*$currency->value;
+        if ($amount_usd>$merchant->solde){
+            return false;
+        }
+        return true;
     }
     public static function set_symbol($amount)
     {

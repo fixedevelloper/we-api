@@ -12,46 +12,22 @@
                                 Merchant name
                             </th>
                             <th>
-                                Total send
-                            </th>
-                            <th>
-                                Total receive
-                            </th>
-                            <th>
                                 Balance
                             </th>
 
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($balances as $balance)
                         <tr>
                             <td class="py-1">
-                               Merchant default
+                                {{$balance['merchant_name']}}
                             </td>
                             <td>
-                                $ 78.99
-                            </td>
-                            <td>
-                                $ 83.99
-                            </td>
-                            <td>
-                                $ 77.99
+                                $ {{$balance['solde']}}
                             </td>
                         </tr>
-                        <tr>
-                            <td class="py-1">
-                                Merchant 2
-                            </td>
-                            <td>
-                                $ 78.99
-                            </td>
-                            <td>
-                                $ 365.99
-                            </td>
-                            <td>
-                                $ 249.99
-                            </td>
-                        </tr>
+                        @endforeach
 
                         </tbody>
                     </table>

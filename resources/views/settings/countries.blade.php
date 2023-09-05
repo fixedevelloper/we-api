@@ -57,7 +57,7 @@
                                     {{$item['codephone']}}
                                 </td>
                                 <td>
-                                    {{$item['currency']}}
+                                    {{$item['currency']->name}}
                                 </td>
                                 <td>
                                     {{$item['zone']->name}}
@@ -114,10 +114,10 @@
                                 <input class="form-control" name="codephone" type="text" id="codephone"
                                        required="" placeholder="EX:237">
                             </div>
-                            <div class="mb-3 col-md-12 ">
+                            <div class="mb-3 col-md-6 ">
                                 <label for="currency_id" class="form-label">Currency</label>
                                 <select class="form-select" name="currency_id" type="text" id="currency_id">
-                                    <option>Select country</option>
+                                    <option>Select currency</option>
                                     @foreach($currencies as $item)
                                         <option value="{{$item->id}}">{{$item->code}}</option>
                                     @endforeach

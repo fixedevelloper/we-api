@@ -10,10 +10,12 @@ use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Operator;
 use App\Models\Payment;
+use App\Models\PaymentLink;
 use App\Models\Sender;
 use App\Models\Transfert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use function Ramsey\Uuid\Generator\timestamp;
 
 class TransactionController extends Controller
 {
@@ -97,6 +99,18 @@ class TransactionController extends Controller
         logger(Session::get("beneficiary"));
         $operators=Operator::query()->firstWhere(['country_id'=>$beneficiary->country->id])->get();
         if ($request->method()== "POST"){
+            if (!isset($request->amount) || is_null($request->amount)){
+                return back()->withErrors(__('Echec: Amount is required', []));
+            }
+            if (!isset($request->reference) || is_null($request->reference)){
+                return back()->withErrors(__('Echec: Reference is required', []));
+            }
+            if (!isset($request->currency_id) || is_null($request->currency_id)){
+                return back()->withErrors(__('Echec: currency is required', []));
+            }
+            if (Helpers::verifyBalance(Session::get("current_merchant"),$request->amount,$request->currency_id)==false){
+                return back()->withErrors(__('Echec: Balance insuffissante', []));
+            }
             $transfert=new Transfert();
             $transfert->amount=$request->amount;
             $transfert->type="mobile_money";
@@ -178,6 +192,18 @@ class TransactionController extends Controller
         logger(Session::get("beneficiary"));
         $operators=Operator::query()->firstWhere(['country_id'=>$beneficiary->country->id])->get();
         if ($request->method()== "POST"){
+            if (!isset($request->amount) || is_null($request->amount)){
+                return back()->withErrors(__('Echec: Amount is required', []));
+            }
+            if (!isset($request->reference) || is_null($request->reference)){
+                return back()->withErrors(__('Echec: Reference is required', []));
+            }
+            if (!isset($request->currency_id) || is_null($request->currency_id)){
+                return back()->withErrors(__('Echec: currency is required', []));
+            }
+            if (Helpers::verifyBalance(Session::get("current_merchant"),$request->amount,$request->currency_id)==false){
+                return back()->withErrors(__('Echec: Balance insuffissante', []));
+            }
             $transfert=new Transfert();
             $transfert->amount=$request->amount;
             $transfert->type="bank";
@@ -219,23 +245,29 @@ class TransactionController extends Controller
     public function paymentlinks(Request $request){
         $query_param = [];
         $search = $request['search'];
-        if ($request->has('search')) {
-            $key = explode(' ', $request['search']);
-            $items = Payment::where(function ($q) use ($key) {
-                foreach ($key as $value) {
-                    $q->orWhere('f_name', 'like', "%{$value}%")
-                        ->orWhere('l_name', 'like', "%{$value}%")
-                        ->orWhere('phone', 'like', "%{$value}%")
-                        ->orWhere('email', 'like', "%{$value}%");
-                }
-            });
-            $query_param = ['search' => $request['search']];
-        } else {
-            $items = Payment::query()->where(['account_key_id'=>Session::get("current_merchant")]);
+        if ($request->method() == "POST"){
+            $code=Helpers::generatealeatoire(49);
+            $merchant_id=Session::get("current_merchant");
+            $paymentLink=PaymentLink::query()->firstWhere(['code'=>$merchant_id.$code]);
+            if (is_null($paymentLink)){
+                $paymentLink=new PaymentLink();
+                $paymentLink->code=$merchant_id.$code;
+            }
+            $paymentLink->name=$request->name;
+            $paymentLink->amount=$request->amount;
+            $paymentLink->currency_id=$request->currency_id;
+            $paymentLink->account_key_id=Session::get("current_merchant");
+            $paymentLink->enable=true;
+            $paymentLink->url=route('display_link',['code'=>$merchant_id.$code,'t'=>strtotime('Y-m-d')]);
+            $paymentLink->save();
         }
-
+        if ($request->has('search')) {
+        } else {
+            $items = PaymentLink::query()->where(['account_key_id'=>Session::get("current_merchant")]);
+        }
+        $currencies=Currency::all();
         $items = $items->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return view('transaction.paymentlink', compact('items', 'search'));
+        return view('transaction.paymentlink', compact('items', 'search','currencies'));
     }
     public function alltransferts(Request $request){
         $query_param = [];

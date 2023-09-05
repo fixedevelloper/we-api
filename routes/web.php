@@ -26,6 +26,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('submit', [AuthController::class, 'submit'])->name('submit');
 Route::post('submit-register', [AuthController::class, 'submit_register'])->name('submit_register');
 Route::get('/documentation',[HomeController::class,'documentation'])->name('documentation');
+Route::match(array('GET', 'POST'),'/display_link/{code}',[HomeController::class,'display_link'])->name('display_link');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('/merchants', [HomeController::class, 'merchants'])->name('merchants');

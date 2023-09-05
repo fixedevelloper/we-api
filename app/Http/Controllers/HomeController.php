@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\helpers\Helpers;
 use App\Models\AccountKey;
+use App\Models\PaymentLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -24,10 +25,25 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+    public function display_link($code,Request $request)
+    {
+        $payement_link=PaymentLink::query()->firstWhere(['code'=>$code]);
+        if ($request->method()=="POST"){
 
+        }
+        return view('display_link',['link'=>$payement_link]);
+    }
     public function balances()
     {
-        return view('balances');
+        $merchants=AccountKey::query()->where(['user_id'=>auth()->id()])->get();
+        $arrays=[];
+        foreach ($merchants as $merchant){
+            $arrays[]=[
+              'merchant_name'=>$merchant->name,
+              'solde'=>$merchant->solde
+            ];
+        }
+        return view('balances',['balances'=>$arrays]);
     }
 
     public function merchants(Request $request)

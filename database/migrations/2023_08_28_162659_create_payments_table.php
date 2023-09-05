@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('customer_phone');
             $table->float('amount');
-            $table->string('currency');
+            $table->foreignId('currency_id')->constrained();
             $table->string('status')->default(Constant::PENDING);
             $table->string('reference');
             $table->foreignId('country_id')->constrained();

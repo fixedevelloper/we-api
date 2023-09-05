@@ -29,6 +29,7 @@
         @include('_partials._sidebar')
         <div class="main-panel">
             <div class="content-wrapper">
+                @include("_partials.errors-and-messages")
                 @yield('content')
             </div>
             @include('_partials._footer')

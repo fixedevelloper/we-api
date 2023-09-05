@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class PaymentLink extends Model
 {
     use HasFactory;
     public function currency() {
         return $this->belongsTo(Currency::class, 'currency_id', 'id');
-    }
-    public function zone() {
-        return $this->belongsTo(Zone::class, 'zone_id', 'id');
     }
 }
