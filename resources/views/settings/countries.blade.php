@@ -114,10 +114,14 @@
                                 <input class="form-control" name="codephone" type="text" id="codephone"
                                        required="" placeholder="EX:237">
                             </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="currency" class="form-label">Currency</label>
-                                <input class="form-control" name="currency" type="text" id="currency"
-                                       required="" placeholder="XAF">
+                            <div class="mb-3 col-md-12 ">
+                                <label for="currency_id" class="form-label">Currency</label>
+                                <select class="form-select" name="currency_id" type="text" id="currency_id">
+                                    <option>Select country</option>
+                                    @foreach($currencies as $item)
+                                        <option value="{{$item->id}}">{{$item->code}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3 col-md-12 form-group">
                                 <label for="zone_id" class="form-label">Zone</label>

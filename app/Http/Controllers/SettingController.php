@@ -89,7 +89,7 @@ class SettingController extends Controller
             }
             $country->name=$request->name;
             $country->codephone=$request->codephone;
-            $country->currency=$request->currency;
+            $country->currency_id=$request->currency_id;
             $country->zone_id=$request->zone_id;
             $country->save();
         }
@@ -108,8 +108,9 @@ class SettingController extends Controller
             $items = new Country();
         }
         $zones=Zone::all();
+        $currencies=Currency::all();
         $items = $items->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return view('settings.countries', compact('items', 'search','zones'));
+        return view('settings.countries', compact('items', 'search','zones','currencies'));
 
     }
     public function operators(Request $request){

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('codeiso')->unique();
             $table->string('codephone')->unique();
             $table->string('currency')->unique();
+            $table->foreignId('currency_id')->constrained();
             $table->foreignId('zone_id')->constrained();
             $table->timestamps();
         });
