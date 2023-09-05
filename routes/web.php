@@ -25,10 +25,11 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('submit', [AuthController::class, 'submit'])->name('submit');
 Route::post('submit-register', [AuthController::class, 'submit_register'])->name('submit_register');
+Route::get('/documentation',[HomeController::class,'documentation'])->name('documentation');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('/merchants', [HomeController::class, 'merchants'])->name('merchants');
-    Route::get('/profil', [AuthController::class, 'profil'])->name('profil');
+    Route::match(array('GET', 'POST'),'/profil', [AuthController::class, 'profil'])->name('profil');
     Route::match(array('GET', 'POST'), '/changepassword', [AuthController::class, 'changepassword'])
         ->name('changepassword');
     Route::match(array('GET', 'POST'), '/changeimage', [AuthController::class, 'changeimage'])
@@ -55,4 +56,5 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
     Route::match(array('GET', 'POST'),'/currencies', [SettingController::class, 'currencies'])->name('currencies');
     Route::match(array('GET', 'POST'),'/countries', [SettingController::class, 'countries'])->name('countries');
     Route::match(array('GET', 'POST'),'/operators', [SettingController::class, 'operators'])->name('operators');
+    Route::match(array('GET', 'POST'),'/partenaire-api', [SettingController::class, 'partenaires'])->name('partenaires');
 });

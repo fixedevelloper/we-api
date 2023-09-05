@@ -15,12 +15,15 @@
                         <section>
                             <div class="col-md-12 form-group">
                                 <label for="beneficiary_id">Select Beneficiary</label>
-                                <select class="form-select" name="beneficiary_id" type="text" id="beneficiary_id">
+                                <select class="form-select basic-single" name="beneficiary_id" type="text" id="beneficiary_id">
                                     <option value="0">Select Beneficiary</option>
                                     @foreach($beneficiaries as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="divider_text text-center">
+                                <h4>OR</h4>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
@@ -58,7 +61,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="country">Country</label>
-                                    <select class="form-select" name="country_id" type="text" id="country">
+                                    <select class="form-select basic-single" name="country_id" type="text" id="country">
                                         <option>Select country</option>
                                         @foreach($countries as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>

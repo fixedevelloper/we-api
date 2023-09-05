@@ -8,6 +8,7 @@ use App\helpers\Helpers;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Operator;
+use App\Models\Partenaire;
 use App\Models\User;
 use App\Models\Zone;
 use Illuminate\Http\Request;
@@ -173,6 +174,16 @@ class SettingController extends Controller
         $countries=Country::all();
         $items = $items->customer()->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
         return view('settings.customers', compact('items', 'search','countries'));
+
+    }
+    public function partenaires(Request $request){
+        $query_param = [];
+        $search = $request['search'];
+        if ($request->has('search')) {
+        }
+        $items = new Partenaire();
+        $items = $items->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
+        return view('settings.partenaires', compact('items'));
 
     }
 }

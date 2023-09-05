@@ -2,8 +2,9 @@
 @section('content')
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
+
             <div class="card-body">
-                <h4 class="card-title">My Transferts</h4>
+                <h4 class="card-title">Partenaires API</h4>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -12,25 +13,16 @@
                                 #
                             </th>
                             <th>
-                                Date
+                                Name
                             </th>
                             <th>
-                                Sender
-                            </th>
-                            <th>
-                                amount
-                            </th>
-                            <th>
-                                Beneficiary
-                            </th>
-                            <th>
-                                Type
+                                Code
                             </th>
                             <th>
                                 Status
                             </th>
                             <th>
-                                Actions
+
                             </th>
                         </tr>
                         </thead>
@@ -39,38 +31,24 @@
                             <tr>
                                 <td>{{$items->firstitem()+$key}}</td>
                                 <td class="py-1">
-                                    {{$item['created_at']}}
+                                    {{$item['name']}}
                                 </td>
                                 <td>
-                                    {{$item['sender']->name}}
+                                    {{$item['code']}}
                                 </td>
                                 <td>
-                                    {{$item['amount']}} {{$item['currency']->code}}
-                                </td>
-                                <td>
-                                    {{$item['beneficiary']->name}}
-                                </td>
-                                <td>
-                                    @if(!is_null($item['type']))
-                                        {{$item['type']}}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($item['status']==\App\helpers\Constant::PENDING)
-                                        <span class="badge badge-dark">{{$item['status']}}</span>
-                                    @elseif($item['status']==\App\helpers\Constant::PROCESSING)
-                                        <span class="badge badge-warning">{{$item['status']}}</span>
-                                    @elseif($item['status']==\App\helpers\Constant::SUCCESS)
-                                        <span class="badge badge-success">{{$item['status']}}</span>
+                                    @if($item['activate'])
+                                        <span class="badge badge-success">True</span>
                                     @else
-                                        <span class="badge badge-danger">{{$item['status']}}</span>
+                                        <span class="badge badge-dark">False</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="btn-group-sm">
-                                        <a class="btn btn-dark"><i class="mdi mdi-eye"></i></a>
-                                        <a class="btn btn-danger"><i class="mdi mdi-cancel"></i></a>
-                                    </div>
+                                    @if($item['activate'])
+                                        <a class="btn btn-sm btn-success">Desactive</a>
+                                    @else
+                                        <a class="btn btn-sm btn-dark">Active</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

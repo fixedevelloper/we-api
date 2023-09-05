@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\helpers\Helpers;
 use App\Models\AccountKey;
 use App\Models\BussinesService;
+use App\Models\Partenaire;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -42,5 +43,20 @@ class DatabaseSeeder extends Seeder
         $bussiness->name="Wacepay";
         $bussiness->code_name="wacepay";
         $bussiness->save();
+        $patnaire=new Partenaire();
+        $patnaire->name="Wace pay";
+        $patnaire->code="wacepay";
+        $patnaire->activate=true;
+        $patnaire->save();
+        $patnaire2=new Partenaire();
+        $patnaire2->name="PayCI";
+        $patnaire2->code="payci";
+        $patnaire2->activate=false;
+        $patnaire2->save();
+        $patnaire3=new Partenaire();
+        $patnaire3->name="PayDunya";
+        $patnaire3->code="paydunya";
+        $patnaire3->activate=false;
+        $patnaire3->save();
     }
 }

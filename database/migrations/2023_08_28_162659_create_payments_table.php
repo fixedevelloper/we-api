@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('customer_email');
             $table->foreignId('operator_id')->nullable(true)->constrained();
+            $table->foreignId('partenaire_id')->nullable(true)->constrained();
             $table->string('card_cvv')->nullable(true);
             $table->string('card_number')->nullable(true);
             $table->string('option_title');

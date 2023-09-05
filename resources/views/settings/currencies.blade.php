@@ -93,7 +93,7 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="value" class="form-label">Value</label>
-                                <input class="form-control" name="value" type="number" id="value"
+                                <input class="form-control" min="0" name="value" type="text" id="value"
                                        required="" placeholder="Ex:657.78">
                             </div>
 

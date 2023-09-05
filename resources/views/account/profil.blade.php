@@ -10,12 +10,12 @@
                             <div class="card-body">
                                 <div class="bg-picture">
                                     <div class="d-flex align-items-top">
-                                        <img src="{{asset('storage/uploads/'.$user->photo)}}"
+                                        <img src="{{asset('storage/uploads/'.$user->image)}}"
                                              class="flex-shrink-0 rounded-circle avatar-xl img-thumbnail float-start me-3"
                                              alt="profile-image">
                                     </div>
-                                    <form method="POST" action="{{route('changeimage')}}" enctype="multipart/form-data">
-                                        {{csrf_field()}}
+                                    <form method="post" action="{{route('changeimage')}}" enctype="multipart/form-data">
+                                       @csrf
                                         <div class="mt-3 d-grid text-center">
                                             <input required name="photo" type="file" placeholder="Changer image">
                                         </div>
@@ -47,12 +47,12 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="profile1">
-                                        <form method="POST">
+                                        <form method="post">
                                             {{csrf_field()}}
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="name" class="form-label">Nom</label>
-                                                    <input value="{{$user->name}}" class="form-control" name="firstname"
+                                                    <input value="{{$user->name}}" class="form-control" name="name"
                                                            type="text" id="name" required=""
                                                            placeholder="Enter your name">
                                                 </div>

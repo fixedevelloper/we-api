@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('code_partenaire')->nullable();
             $table->string('status_partenaire')->default(Constant::PENDING);
             $table->string('status')->default(Constant::PENDING);
+            $table->foreignId('partenaire_id')->nullable(true)->constrained();
             $table->foreignId('operator_id')->nullable(true)->constrained();
             $table->foreignId('currency_id')->constrained();
             $table->foreignId('sender_id')->constrained();

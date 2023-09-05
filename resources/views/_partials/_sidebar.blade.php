@@ -24,14 +24,14 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                     <i class="menu-icon mdi mdi-transfer-down"></i>
-                    <span class="menu-title">Transfert</span>
+                    <span class="menu-title">Transfers</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{route('transferts')}}">Transferts</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{route('addbanktransfert')}}">Create Bank</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{route('addtransfert')}}">Create Mobile</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('transferts')}}">Transfers</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('addbanktransfert')}}">Create a bank transfer</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('addtransfert')}}">Create a mobile transfer</a></li>
                   </ul>
                 </div>
             </li>
@@ -57,7 +57,7 @@
             </li>
                 <li class="nav-item nav-category">API DOCUMENTATION</li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('balances')}}">
+                    <a class="nav-link" href="{{route('documentation')}}" target="_blank">
                         <i class="mdi mdi-file menu-icon"></i>
                         <span class="menu-title">Documentation</span>
                     </a>
@@ -103,6 +103,12 @@
                     <span class="menu-title">Operators</span>
                 </a>
             </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('partenaires')}}">
+                        <i class="mdi mdi-access-point-network menu-icon"></i>
+                        <span class="menu-title">Partenaires</span>
+                    </a>
+                </li>
             @endif
         </ul>
       </nav>

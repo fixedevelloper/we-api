@@ -45,6 +45,20 @@ class TransfertController extends BaseController
         if (!isset($data['sender']['country']) || is_null($data['sender']['country'])){
             return $this->sendError("sender country is not null",['error'=>" sender country is not null",'code'=>841]);
         }
+        //
+        if (!isset($data['sender']['pieceID']) || is_null($data['sender']['pieceID'])){
+            return $this->sendError("sender pieceID is not null",['error'=>" sender pieceID is not null",'code'=>841]);
+        }
+        if (!isset($data['sender']['pieceNumber']) || is_null($data['sender']['pieceNumber'])){
+            return $this->sendError("sender pieceNumber is not null",['error'=>" sender pieceNumber is not null",'code'=>841]);
+        }
+        if (!isset($data['sender']['pieceCreatedAt']) || is_null($data['sender']['pieceCreatedAt'])){
+            return $this->sendError("sender pieceCreatedAt is not null",['error'=>" sender pieceCreatedAt is not null",'code'=>841]);
+        }
+        if (!isset($data['sender']['pieceExpiredAt']) || is_null($data['sender']['pieceExpiredAt'])){
+            return $this->sendError("sender pieceExpiredAt is not null",['error'=>" sender pieceExpiredAt is not null",'code'=>841]);
+        }
+        //
         if (!isset($data['beneficiary']['phone']) || is_null($data['beneficiary']['phone'])){
             return $this->sendError("sender phone is not null",['error'=>" sender phone is not null",'code'=>841]);
         }
@@ -54,6 +68,8 @@ class TransfertController extends BaseController
         if (!isset($data['beneficiary']['country']) || is_null($data['beneficiary']['country'])){
             return $this->sendError("beneficiary country is not null",['error'=>" beneficiary country is not null",'code'=>841]);
         }
+        //
+
         $country_sender=Country::query()->firstWhere(['codeiso'=>$data['sender']['country']]);
         if (is_null($country_sender)){
             return $this->sendError("sender country not exist",['error'=>" sender country not exist",'code'=>841]);
@@ -68,7 +84,10 @@ class TransfertController extends BaseController
             return $this->sendError("sender Operator not exist",['error'=>" sender Operator not exist",'code'=>841]);
         }
 
-        $sender=Sender::query()->firstWhere(['email'=>$data['sender']['email'],'phone'=>$data['sender']['phone']]);
+        $sender=Sender::query()->firstWhere([
+            'email'=>$data['sender']['email'],
+            'phone'=>$data['sender']['phone']
+        ]);
 
         if (is_null($sender)){
             $sender=new Sender();
@@ -79,6 +98,10 @@ class TransfertController extends BaseController
             $sender->name=$data['sender']['name'];
             $sender->country_id=$country_sender->id;
             $sender->user_id=$merchant->user_id;
+            $sender->type_piece=$data['sender']['pieceID'];;
+            $sender->number_piece=$data['sender']['pieceNumber'];;
+            $sender->created_piece_at=$data['sender']['pieceCreatedAt'];
+            $sender->expired_piece_at=$data['sender']['pieceExpiredAt'];
             $sender->unique_id=Helpers::generatealeatoireNumeric(60);
             $sender->save();
          }
@@ -141,6 +164,20 @@ class TransfertController extends BaseController
         if (!isset($data['sender']['country']) || is_null($data['sender']['country'])){
             return $this->sendError("sender country is not null",['error'=>" sender country is not null",'code'=>841]);
         }
+        //
+        if (!isset($data['sender']['pieceID']) || is_null($data['sender']['pieceID'])){
+            return $this->sendError("sender pieceID is not null",['error'=>" sender pieceID is not null",'code'=>841]);
+        }
+        if (!isset($data['sender']['pieceNumber']) || is_null($data['sender']['pieceNumber'])){
+            return $this->sendError("sender pieceNumber is not null",['error'=>" sender pieceNumber is not null",'code'=>841]);
+        }
+        if (!isset($data['sender']['pieceCreatedAt']) || is_null($data['sender']['pieceCreatedAt'])){
+            return $this->sendError("sender pieceCreatedAt is not null",['error'=>" sender pieceCreatedAt is not null",'code'=>841]);
+        }
+        if (!isset($data['sender']['pieceExpiredAt']) || is_null($data['sender']['pieceExpiredAt'])){
+            return $this->sendError("sender pieceExpiredAt is not null",['error'=>" sender pieceExpiredAt is not null",'code'=>841]);
+        }
+        //
         if (!isset($data['beneficiary']['phone']) || is_null($data['beneficiary']['phone'])){
             return $this->sendError("sender phone is not null",['error'=>" sender phone is not null",'code'=>841]);
         }
@@ -172,6 +209,10 @@ class TransfertController extends BaseController
             $sender->name=$data['sender']['name'];
             $sender->country_id=$country_sender->id;
             $sender->user_id=$merchant->user_id;
+            $sender->type_piece=$data['sender']['pieceID'];;
+            $sender->number_piece=$data['sender']['pieceNumber'];;
+            $sender->created_piece_at=$data['sender']['pieceCreatedAt'];
+            $sender->expired_piece_at=$data['sender']['pieceExpiredAt'];
             $sender->unique_id=Helpers::generatealeatoireNumeric(60);
             $sender->save();
         }

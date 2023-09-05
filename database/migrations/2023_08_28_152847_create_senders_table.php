@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('email');
             $table->string('civility');
             $table->string('gender');
+            $table->string('type_piece')->nullable();
+            $table->string('number_piece')->nullable();
+            $table->date('created_piece_at')->nullable();
+            $table->date('expired_piece_at')->nullable();
+            $table->date('dob')->nullable();
             $table->string('unique_id');
             $table->foreignId('country_id')->constrained();
             $table->foreignId('user_id')->constrained();

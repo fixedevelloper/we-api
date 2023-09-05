@@ -16,7 +16,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
+    public function documentation()
+    {
+        return view('documentation');
+    }
     public function dashboard()
     {
         return view('dashboard');

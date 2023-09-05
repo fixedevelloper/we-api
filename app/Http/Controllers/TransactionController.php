@@ -50,6 +50,10 @@ class TransactionController extends Controller
                 $sender->civility=$request->civility;
                 $sender->gender=$request->gender;
                 $sender->country_id=$request->country_id;
+                $sender->type_piece=$request->type_piece;
+                $sender->number_piece=$request->number_card;
+                $sender->created_piece_at=$request->created_card;
+                $sender->expired_piece_at=$request->expired_card;
                 $sender->user_id=auth()->id();
                 $sender->unique_id=Helpers::generatealeatoireNumeric(60);
                 $sender->save();
@@ -102,6 +106,7 @@ class TransactionController extends Controller
             $transfert->operator_id=$request->operator_id;
             $transfert->t_ref=Helpers::generatealeatoireNumeric(20);
             $transfert->reference=$request->reference;
+            $transfert->currency_id=$request->currency_id;
             $transfert->save();
             return redirect()->route("transferts");
         }
@@ -121,6 +126,10 @@ class TransactionController extends Controller
                 $sender->civility=$request->civility;
                 $sender->gender=$request->gender;
                 $sender->country_id=$request->country_id;
+                $sender->type_piece=$request->type_piece;
+                $sender->number_piece=$request->number_card;
+                $sender->created_piece_at=$request->created_card;
+                $sender->expired_piece_at=$request->expired_card;
                 $sender->user_id=auth()->id();
                 $sender->unique_id=Helpers::generatealeatoireNumeric(60);
                 $sender->save();
@@ -178,6 +187,7 @@ class TransactionController extends Controller
            // $transfert->operator_id=$request->operator_id;
             $transfert->t_ref=Helpers::generatealeatoireNumeric(20);
             $transfert->reference=$request->reference;
+            $transfert->currency_id=$request->currency_id;
             $transfert->relaction=$request->relaction;
             $transfert->save();
             return redirect()->route("transferts");

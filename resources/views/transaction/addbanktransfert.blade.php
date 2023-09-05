@@ -22,6 +22,9 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="divider_text text-center">
+                                <h4>OR</h4>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="exampleInputUsername1">name</label>
@@ -58,12 +61,37 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="country">Country</label>
-                                    <select class="form-select" name="country_id" type="text" id="country">
+                                    <select class="form-select basic-single" name="country_id" type="text" id="country">
                                         <option>Select country</option>
                                         @foreach($countries as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="exampleInputUsername1">Type card</label>
+                                    <select type="text" class="form-select" id="examplgender"
+                                            name="type_piece">
+                                        <option value="passport">Passport card</option>
+                                        <option value="cni">CNI card</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="number_card">Number card</label>
+                                    <input type="text" class="form-control" id="number_card"
+                                           name="number_card" placeholder="Number card">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="created_card">Created card</label>
+                                    <input type="date" class="form-control" id="created_card"
+                                           name="created_card" placeholder="Sender phone">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="expired_card">Expired card</label>
+                                    <input type="date" class="form-control" id="expired_card"
+                                           name="expired_card" placeholder="Sender phone">
                                 </div>
                             </div>
                             <div class="">

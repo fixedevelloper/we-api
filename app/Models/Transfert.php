@@ -19,7 +19,7 @@ class Transfert extends Model
         return $this->belongsTo(AccountKey::class, 'account_key_id', 'id');
     }
     public function currency() {
-        return $this->belongsTo(Sender::class, 'currency_id', 'id');
+        return $this->belongsTo(Currency::class, 'currency_id', 'id');
     }
     public function sender() {
         return $this->belongsTo(Sender::class, 'sender_id', 'id');

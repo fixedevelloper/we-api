@@ -30,6 +30,9 @@
                                 Beneficiary
                             </th>
                             <th>
+                                Type
+                            </th>
+                            <th>
                                 Operator
                             </th>
                             <th>
@@ -57,10 +60,13 @@
                                     {{$item['amount']}}
                                 </td>
                                 <td>
-                                    {{$item['currency']}}
+                                    {{$item['currency']->code}}
                                 </td>
                                 <td>
                                     {{$item['beneficiary']->name}}
+                                </td>
+                                <td>
+                                    {{$item['type']}}
                                 </td>
                                 <td>
                                     @if(!is_null($item['operator']))

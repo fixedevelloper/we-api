@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="exampleInputUsername1">Currency</label>
-                                    <select class="form-select" name="operator_id" type="text" id="operator_id">
+                                    <select class="form-select basic-single" name="currency_id" type="text" id="operator_id">
                                         @foreach($currencies as $item)
                                             <option value="{{$item->id}}">{{$item->code}}</option>
                                         @endforeach
