@@ -92,7 +92,7 @@
                                 <input class="form-control" name="code" type="text" id="code"
                                        required="" placeholder="EX: mtn-cm">
                             </div>
-                            <div class="mb-3 col-md-12 ">
+                            <div class="mb-3 col-md-6 ">
                                 <label for="country" class="form-label">Country</label>
                                 <select class="form-select" name="country_id" type="text" id="country">
                                     <option>Select country</option>
