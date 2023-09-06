@@ -25,7 +25,8 @@
                         <div class="brand-logo">
                           {{--  <img src="{{asset('images/logo.png')}}" alt="logo">--}}
                         </div>
-                        <h4>{{$link->name}}</h4>
+                        <h4 class="text-center">{{$link->name}}</h4>
+                        <p>{{$link->description}}</p>
                         @include("_partials.errors-and-messages")
                         <form class="pt-3" method="post">
                             @csrf
@@ -45,9 +46,9 @@
                                        name="name" placeholder="Your name">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label for="exampleInputUsername1">Your phone</label>
-                                <input type="text" class="form-control" id="examplname"
-                                       name="name" placeholder="Your phone">
+                                <label for="exampleInputUsername1">Your Email</label>
+                                <input type="email" class="form-control" id="examplname"
+                                       name="email" placeholder="Your email">
                             </div>
                             </div>
                             <div class="mt-3 row">

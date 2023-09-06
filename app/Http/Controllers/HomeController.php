@@ -4,8 +4,11 @@
 namespace App\Http\Controllers;
 
 
+use App\helpers\Constant;
 use App\helpers\Helpers;
 use App\Models\AccountKey;
+use App\Models\Country;
+use App\Models\Payment;
 use App\Models\PaymentLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -25,13 +28,58 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+    public function success()
+    {
+        return view('sucess');
+    }
+    public function error()
+    {
+        return view('echec');
+    }
     public function display_link($code,Request $request)
     {
         $payement_link=PaymentLink::query()->firstWhere(['code'=>$code]);
         if ($request->method()=="POST"){
-
+            $payment=new Payment();
+            $payment->amount=$payement_link->amount;
+            $payment->currency_id=$payement_link->currency_id;
+            $payment->customer_name=$request->name;
+           // $payment->customer_phone=$request->phone;
+            $payment->customer_email=$request->email;
+            $payment->option_title=$payement_link->name;
+            $payment->account_key_id=$payement_link->account_key_id;
+            $payment->option_description=$payement_link->name;
+            $payment->reference=Helpers::generatealeatoire(23);
+            $payment->card_cvv=$request->name;
+            $payment->card_number=$request->name;
+            $payment->country_id=1;
+            $payment->code_link=$payement_link->account_key_id.Helpers::generatealeatoire(79);
+            $payment->save();
+            return redirect()->route('payment_link',['code'=>$payment->code_link]);
         }
         return view('display_link',['link'=>$payement_link]);
+    }
+    public function payment_link($code,Request $request)
+    {
+
+        $payement_link=Payment::query()->firstWhere(['code_link'=>$code]);
+        if ($payement_link->status !=Constant::PENDING){
+            return redirect()->route('echec')->withErrors(__('Echec: Lien expiré', []));;
+        }
+        if ($request->method()=="POST"){
+            if ($request->model=="mobile_money"){
+                $payement_link->customer_phone=$request->phone;
+            }else{
+                $payement_link->card_cvv=$request->cvv;
+                $payement_link->card_number=$request->cardnumber;
+               // $payement_link->card_valid_date=$request->valid_date;
+            }
+            $payement_link->status=Constant::PROCESSING;
+            $payement_link->save();
+            return redirect()->route('success');
+        }
+        $countries=Country::all();
+        return view('payment_link',['link'=>$payement_link,'countries'=>$countries]);
     }
     public function balances()
     {

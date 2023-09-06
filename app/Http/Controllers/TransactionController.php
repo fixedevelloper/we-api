@@ -254,6 +254,7 @@ class TransactionController extends Controller
                 $paymentLink->code=$merchant_id.$code;
             }
             $paymentLink->name=$request->name;
+            $paymentLink->description=$request->description;
             $paymentLink->amount=$request->amount;
             $paymentLink->currency_id=$request->currency_id;
             $paymentLink->account_key_id=Session::get("current_merchant");

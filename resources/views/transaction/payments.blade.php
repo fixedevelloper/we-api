@@ -34,7 +34,7 @@
                         <tbody>
                         @foreach($items as $key=>$item)
                             <tr>
-                                <td>{{$item->firstitem()+$key}}</td>
+                                <td>{{$items->firstitem()+$key}}</td>
                                 <td class="py-1">
                                     {{$item['name']}}
                                 </td>

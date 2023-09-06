@@ -11,4 +11,7 @@ class Payment extends Model
     public function account_key() {
         return $this->belongsTo(AccountKey::class, 'account_key_id', 'id');
     }
+    public function currency() {
+        return $this->belongsTo(Currency::class, 'currency_id', 'id');
+    }
 }

@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string("name");
             $table->string("code")->unique();
             $table->string('url');
-            $table->boolean('enable');
+            $table->string('return_url')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('description')->nullable();
+            $table->boolean('enable')->default(true);
             $table->float('amount');
             $table->foreignId('account_key_id')->constrained();
             $table->foreignId('currency_id')->constrained();

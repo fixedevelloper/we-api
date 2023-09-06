@@ -101,9 +101,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3 col-md-12">
+                                <label for="amount" class="form-label">Description</label>
+                                <textarea rows="4" class="form-control" name="description"  id="amount"
+                                          required="" placeholder="EX:vente produits de beauté"></textarea>
+                            </div>
                         </div>
                         <div class="mb-3 d-grid text-center">
-                            <button class="btn btn-success" type="submit"> Enregistrer </button>
+                            <button class="btn btn-success" type="submit"> Save </button>
                         </div>
                     </form>
                 </div>
